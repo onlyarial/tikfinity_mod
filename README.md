@@ -1,13 +1,13 @@
 
 # TikFinity Connector
 
-A 1.20 Fabric mod to connect your TikTok stream to minecraft using [TikFinity](tikfinity.zerody.one/)!
+A Minecraft Java 26.2 Fabric mod that connects your TikTok stream to Minecraft using [TikFinity](https://tikfinity.zerody.one/)!
 
 ## Installation
 
 ### Fabric
 
-Install Minecraft 1.20.1 and a matching Fabric version ([link to the official installation guide](https://fabricmc.net/wiki/install))
+Install Minecraft Java 26.2 and Fabric Loader 0.19.3 or newer ([official installation guide](https://fabricmc.net/use/installer/)). Java 25 is required when building the mod.
 
 ### Fabric API
 
@@ -21,7 +21,7 @@ Cloth Config is a helper mod used by tikfinity. You need to download and install
 
 ### Tikfinity Connector
 
-This is the main mod. Download it [here](https://github.com/jakob-kruse/tikfinity_mod/releases/download/1.0/tikfinity-1.0.jar) or go to the GitHub releases and download the latest `tikfinity-x.y.jar` (not the sources.jar).
+This is the main mod. Download the latest `tikfinity-x.y.z.jar` from the GitHub releases (not the sources JAR), or build it with `./gradlew build` and use the JAR in `build/libs`.
 
 ### (Optional) Mod Menu
 
@@ -53,7 +53,7 @@ Click "Test Connection" and it should show this:
 Connection successfully established!
 
 Server Name: TikFinity Mod
-Server Version: 1.20.1
+Server Version: 26.2
 ```
 
 ## Configuration

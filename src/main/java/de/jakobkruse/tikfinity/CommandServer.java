@@ -4,9 +4,8 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
 import me.shedaniel.autoconfig.AutoConfig;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.level.ServerPlayer;
 import org.apache.commons.io.IOUtils;
 
 import java.io.IOException;
@@ -18,9 +17,11 @@ import java.nio.charset.StandardCharsets;
 
 public class CommandServer {
     private final CommandExecutor executor;
+    private final MinecraftServer minecraftServer;
 
-    public CommandServer(CommandExecutor executor) {
+    public CommandServer(CommandExecutor executor, MinecraftServer minecraftServer) {
         this.executor = executor;
+        this.minecraftServer = minecraftServer;
     }
 
     private HttpServer server = null;
@@ -95,18 +96,18 @@ public class CommandServer {
             String playerName = null;
 
             try {
-                MinecraftServer server = MinecraftClient.getInstance().getServer();
+                MinecraftServer server = minecraftServer;
 
                 if (server != null) {
-                    String[] playerNames = server.getPlayerManager().getPlayerNames();
+                    String[] playerNames = server.getPlayerNames();
 
                     if (playerNames.length > 0) {
                         String firstPlayer = playerNames[0];
 
-                        ServerPlayerEntity player = server.getPlayerManager().getPlayer(firstPlayer);
+                        ServerPlayer player = server.getPlayerList().getPlayerByName(firstPlayer);
 
                         if(player != null) {
-                            playerName = player.getEntityName();
+                            playerName = player.getName().getString();
                         }
                     }
                 }
@@ -119,7 +120,7 @@ public class CommandServer {
                     {
                       "name": "TikFinity Mod",
                       "motd": "string",
-                      "version": "1.20.1",
+                      "version": "26.2",
                       "bukkitVersion": "string",
                       "tps": "string",
                       "playerName": %s,

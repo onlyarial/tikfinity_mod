@@ -26,7 +26,7 @@
     "fabricloader": ">=${loader_version}",
     "fabric": "*",
     "minecraft": "${minecraft_version}",
-    "cloth-config": "^11"
+    "cloth-config": ">=26.2.155"
   },
   "custom": {
     "modmenu": {

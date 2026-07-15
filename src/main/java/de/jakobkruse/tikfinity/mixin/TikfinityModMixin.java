@@ -16,15 +16,16 @@ public class TikfinityModMixin {
     @Unique
     private CommandServer commandServer;
 
-    @Inject(at = @At("TAIL"), method = "loadWorld")
+    @Inject(at = @At("TAIL"), method = "loadLevel")
     private void init(CallbackInfo info) {
         TikfinityMod.LOGGER.info("Starting Web Server on Client");
-        commandServer = new CommandServer(new CommandExecutor());
+        MinecraftServer minecraftServer = (MinecraftServer) (Object) this;
+        commandServer = new CommandServer(new CommandExecutor(minecraftServer), minecraftServer);
 
         commandServer.startServer();
     }
 
-    @Inject(at = @At("TAIL"), method = "shutdown")
+    @Inject(at = @At("TAIL"), method = "stopServer")
     private void shutdown(CallbackInfo info) {
         TikfinityMod.LOGGER.info("Stopping Web Server");
         if(commandServer != null) {
